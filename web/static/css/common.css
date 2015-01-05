@@ -1,0 +1,58 @@
+*{
+  margin: 0;
+  padding:0;
+}
+body{
+  font-size:12px;
+  font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+img{
+  border:none;
+}
+ul li {
+  margin:0;
+  padding:0;
+}
+.form_bor{
+  width:400px;
+  margin:0 auto;
+  padding-top:200px;
+}
+.form-signin-heading{
+  font-size:24px;
+  font-weight: bold;
+  color: #006fa9;
+}
+
+.login-name{
+  font-size:16px; 
+  color:#fff;
+  padding:0 10px;
+}
+.news-text{
+  font-size:14px;
+}
+
+.sub-header{
+  padding-top:50px;
+  text-align: center;
+}
+.sub-header ~ p{
+  font-size:16px;
+  line-height: 30px;
+  padding:0 30px;
+}
+
+.news-cont{
+  width:700px;  
+  padding-top:80px;
+  font-size:16px;
+}
+
+.area-h{
+  width:500px;
+  border-radius:4px;
+  border-color:#cac8c8;
+   height:200px;
+}
+
