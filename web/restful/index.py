@@ -7,7 +7,7 @@ import tornado
 
 from tornado import gen
 from kpages import url, ContextHandler, LogicContext, get_context, service_async
-from logic import user,category,company #倒入logic里的user,new 
+from logic import user,category,position,company #倒入logic里的user,new 
 
 class BaseHandler(ContextHandler,tornado.web.RequestHandler):
     uid = property(lambda self:self.get_cookie('uid'))#基类uid(接受cookie里的uid)
@@ -16,13 +16,6 @@ class BaseHandler(ContextHandler,tornado.web.RequestHandler):
         if not self.uid:#如果没有登录,则将弹到登录页面
             self.redirect('/user/login')
 
-class PageHandler(ContextHandler,tornado.web.RequestHandler):
-    def get(self):
-        size = 10
-        page = int(self.get_argument('page',0))
-        count = category.count()
-        npage = count/size+1
-        items = campany.page(0,size=100)
 
 @url(r'/user/insert')
 class UserInsertHandler(tornado.web.RequestHandler):
@@ -73,6 +66,7 @@ class JobScreen(BaseHandler):
     def get(self):
         self.render('job.html')
 
+
 @url(r'/job/list')
 class NewsList(BaseHandler):
     def get(self):
@@ -80,7 +74,7 @@ class NewsList(BaseHandler):
         page = int(self.get_argument('page',0))
         count = category.count()
         npage = count/size+1
-        items = company.page(0,size=100)
+        items = position.page(0,size=100)
         self.render('job_list.html',campany=items,page=page,npage=npage)
     
 
@@ -105,6 +99,21 @@ class JobEdit(BaseHandler):
 class JobDetail(BaseHandler):
     def get(self):
         self.render('information.html')#
+
+@url(r'/job/firm')
+class JobFirm(BaseHandler):
+    def get(self):
+        self.render('company.html')#
+
+@url(r'/job/addcom')
+class Jobaddcom(BaseHandler):
+    def get(self):
+        self.render('company_edit.html')#
+
+@url(r'/job/positions')
+class Jobaddcm(BaseHandler):
+    def get(self):
+        self.render('company_edit.html')#
 
 @url(r'/job/alter')
 class Newsalter(BaseHandler):

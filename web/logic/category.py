@@ -2,7 +2,6 @@
 
 from bson import ObjectId
 from kpages import get_context,mongo_conv
-import new
 
 TName ='category'
 
