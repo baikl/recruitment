@@ -27,4 +27,4 @@ def page(page,size=5,**kwargs):
 def find_one(_id,**kwargs):
     coll=get_context().get_mongo()[TName]
     dct=dict(_id=ObjectId(_id))
-    return coll.fin_one(dct)
+    return coll.find_one(dct)
