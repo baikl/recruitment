@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lange="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>后台测试</title>
+		<meta name="keywords" content="测试文字">
+		<meta name="descript" content="测试文字">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="../static/images/logo.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/static/css/common.css" />
+ 	</head>
+
+	<body>
+		<div class="container">
+			<form role="form" class="form-signin form_bor" method="post" action="/user/insert">
+				<h2 class="form-signin-heading text-center" style="color:#918d8c;">注册界面</h2>
+				<input type="email" class="form-control" placeholder="注册邮箱" required autofocus name="email">
+				<br/>		
+				<input type="password" class="form-control" placeholder="密码" required name="pwd">		
+				<br/>
+				<input type="password" class="form-control" placeholder="再次确认密码" required name="again_pwd">		
+				<br/>
+				<div class="row">
+					<div class="col-md-6"><button class="btn btn-lg btn-success btn-block" type="submit">确定</button></div>
+					<div class="col-md-6"><a class="btn btn-lg btn-default btn-block" href='/user/login'>取消</a></div>
+				</div>
+			</form>
+		</div>
+		<!-- /container -->		
+ 	</body>
+</html>
