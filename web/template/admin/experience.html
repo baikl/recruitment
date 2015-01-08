@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block content%}
+  <form  method='post'>
+		<div class="container">
+                      
+			<div class="row text-right">
+				 	<div class="col-md-2"><b>工作经验</b></div>
+                          
+				 	<div class="col-md-10"><input type="text" class="form-control" name='experience' value='{{ item.get('experience')}}'></div>
+				 </div><br/>
+				 
+			 <div class="row">
+				  	<div class="col-md-2"></div>
+				 	<div class="col-md-10">
+				 		<button class="btn btn-warning btn-sm" ><i class="glyphicon glyphicon-ok"></i> 确定</button>
+					</div>
+				 </div>
+			 </div>
+                      
+		</div>
+           </form>
+{% end %}

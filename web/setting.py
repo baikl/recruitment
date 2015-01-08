@@ -1,5 +1,5 @@
 DEBUG = True
 DB_NAME = 'kpages'
 DB_HOST = 'localhost'
-PORT = 8889
-ACTION_DIR = ('admin')
+PORT = 8888
+ACTION_DIR = ('admin','action')

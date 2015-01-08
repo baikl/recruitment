@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content%}
+          <form  method='post'>
+		<div class="container">
+                      
+			
+			 <div class="row text-right">
+				 	<div class="col-md-2"><b>工作省市</b></div>
+                          
+				 	<div class="col-md-10"><input type="text" class="form-control" name='province' value='{{ item.get('province') }}'></div>
+				 </div><br/>
+			
+ 			
+				 <div class="row">
+				  	<div class="col-md-2"></div>
+				 	<div class="col-md-10">
+				 		<button class="btn btn-warning btn-sm" ><i class="glyphicon glyphicon-ok"></i> 确定</button>
+					</div>
+				 </div>
+			 </div>
+                      
+		</div>
+           </form>
+		<!-- /container -->		
+{% end %}
