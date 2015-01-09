@@ -38,21 +38,26 @@ class JobEdit(BaseHandler):
         self.render('admin/job_add.html')
 
     def post(self):
-       # name=self.get_argument('name')
-       # ask=self.get_argument('ask')
-       # address=self.get_argument('address')
-       # number=self.get_argument('number')
-       # desc=self.get_argument('desc')
-       # date=self.get_argument('date')
-       # company=company.insert(name,ask,address,number,desc,date)
-        self.redirect('/job/detail')
+        name=self.get_argument('name')
+        title=self.get_argument('title')
+        ask=self.get_argument('ask')
+        address=self.get_argument('address')
+        number=self.get_argument('number')
+        desc=self.get_argument('desc')
+        job=self.get_argument('job')
+        education=self.get_argument('education')
+        date=self.get_argument('date')
+        _id=position.insert(name,title,ask,address,number,desc,job,education,date)
+        self.redirect('/job/detail?_id='+str(_id))
 
 
 
 @url(r'/job/detail')
 class JobDetail(BaseHandler):
     def get(self):
-        self.render('information.html')#
+        _id = self.get_argument('_id')
+        positions = position.find_one(_id)
+        self.render('information.html',item=positions)#
 
 @url(r'/job/alter')
 class Newsalter(BaseHandler):

@@ -7,12 +7,12 @@ TName = 'genre'
 
 def insert (title,**kwargs):
     coll = get_context().get_mongo()[TName]
-    dct = dict(title=title)
+    dct = dict(title = title)
     return coll.insert(dct)
 
 def count (**kwargs):
     coll = get_context().get_mongo()[TName]
-    return coll.count(dct)
+    return coll.find(kwargs).count()
 
 def update (_id,**kwargs):
     coll = get_context().get_mongo()[TName]
@@ -21,11 +21,11 @@ def update (_id,**kwargs):
 
 def remove (_id,**kwargs):
     coll = get_context().get_mongo()[TName]
-    dct = dict(_id=ObjectId(_id))
+    dct = dict(_id = ObjectId(_id))
     return coll.remove(dct)
 
 def find_one (_id,**kwargs):
     coll = get_context().get_mongo()[TName]
-    dct = dict(_id=ObjectId(_id))
+    dct = dict(_id = ObjectId(_id))
     return coll.find_one(dct)
 

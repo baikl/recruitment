@@ -15,13 +15,13 @@ class JobFirm(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         companys = company.find_one(_id)
-        self.render('company.html',item=companys)#
+        self.render('admin/company.html',item=companys)#
 
 
 @url(r'/job/addcom')
 class Jobaddcom(BaseHandler):
     def get(self):
-        self.render('admin/company_edit.html')#
+        self.render('company_edit.html')#
 
     def post(self):
         name = self.get_argument('name')
@@ -38,10 +38,9 @@ class Jobaddcom(BaseHandler):
         _id= company.insert(name,intr,proper,indu,scale,area,address,website,contant,phone,email)
         self.redirect('/job/firm?_id='+str(_id))
 
-#@url(r'/job/positions')
-#class Jobaddcm(BaseHandler):
-   # def get(self):
-        
-       # self.render('admin/company_edit.html')#
+@url(r'/job/positions')
+class Jobaddcm(BaseHandler):
+    def get(self):
+        self.render('positions.html')#
 
     

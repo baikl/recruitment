@@ -1,25 +1,43 @@
 {% extends 'base.html'%}
 {% block content%}
-          <form  method='post'>
-		<div class="container">
-                      
-			
-			 <div class="row text-right">
-				 	<div class="col-md-2"><b>工作省市</b></div>
-                          
-				 	<div class="col-md-10"><input type="text" class="form-control" name='province' value='{{ item.get('province') }}'></div>
-				 </div><br/>
-			
- 			
-				 <div class="row">
-				  	<div class="col-md-2"></div>
-				 	<div class="col-md-10">
-				 		<button class="btn btn-warning btn-sm" ><i class="glyphicon glyphicon-ok"></i> 确定</button>
-					</div>
-				 </div>
-			 </div>
-                      
+<div class="container news-text">
+			<h2 class="sub-header">分类</h2>
+			<div class="table-responsive">
+			<a class="btn btn-info btn-sm" href="/admin/province_edit" >添加</a>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							
+							<th class="text-center">地区</th>
+                                                       
+							<th class="text-center">编辑</th>
+						</tr>
+					</thead>
+					<tbody>
+                                          
+		
+						<tr class="text-center">
+                                                        
+							
+							
+                                                        <td class="text-left"></td>
+							<td class="text-center">
+								<div class="btn-group">
+                                                                         
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/listname/alter"> <i class="glyphicon glyphicon-edit"></i>
+										<span class="sr-only">修改</span>
+									</a>
+									<a class="btn btn-danger  btn-sm" title="删除" href="/listname/del"> <i class="glyphicon glyphicon-trash"></i>
+										<span class="sr-only">删除</span>
+									</a>
+									
+								</div>
+							</td> 
+                                                   
+						</tr>
+				
+					</tbody>
+				</table>
+			</div>
 		</div>
-           </form>
-		<!-- /container -->		
 {% end %}

@@ -3,61 +3,87 @@
 		<div class="container news-text">
 			<h2 class="sub-header">分类列表</h2>
 			<div class="table-responsive">
-			<a class="btn btn-info btn-sm" href="/listname_add" >添加</a>
+			
 				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							
-							<th class="text-center">职位类别</th>
-                                                        <th class="text-center">工作省市</th>
-							<th class="text-center">薪酬范围</th>
-							<th class="text-center">工作经验</th>
-							<th class="text-center">编辑</th>
-
-						</tr>
-					</thead>
+					
 					<tbody>
                                           
-						{% for item in category %}
+						
 						<tr class="text-center">
-                                                        
+                                                        <td class="text-center" style="font-size:18px; font-weight: bold;">职位类别</td>
+
 							
-							<td class="text-left">{{ item.get('genre')}}</td>
-                                                        <td class="text-left">{{ item.get('province') }}</td>
-							<td class="text-left">{{ item.get('wage')}}</td>
-							<td class="text-left">{{ item.get('experience')}}</td>
+							<td class="text-left">{{ genre.get('title') }}</td>
 							<td class="text-center">
 								<div class="btn-group">
                                                                          
-								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/listname/alter?_id={{ item['_id'] }}"> <i class="glyphicon glyphicon-edit"></i>
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/admin/alter?"> <i class="glyphicon glyphicon-edit"></i>
 										<span class="sr-only">修改</span>
 									</a>
 									
+								<a class="btn btn-danger  btn-sm" title="删除" href="/admin/del? "> <i class="glyphicon glyphicon-trash"></i>
+										<span class="sr-only">删除</span>
+									</a>	
+								</div>
+							</td> 
+                                                 
+						</tr>
+						<tr class="text-center">
+                                                        
+				s			<td class="text-center" style="font-size:18px; font-weight: bold;">工作省市</td>
+							<td class="text-left"></td>
+							<td class="text-center">
+								<div class="btn-group">
+                                                                         
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/admin/alter?"> <i class="glyphicon glyphicon-edit"></i>
+										<span class="sr-only">修改</span>
+									</a>
+								<a class="btn btn-danger  btn-sm" title="删除" href="/admin/del? "> <i class="glyphicon glyphicon-trash"></i>
+										<span class="sr-only">删除</span>
+									</a>	
 									
 								</div>
 							</td> 
                                                    
 						</tr>
-						{% end %}
-					
-						<tr class="active text-center">
-							<td colspan="5">
+						<tr class="text-center">
+                                                        <td class="text-center" style="font-size:18px; font-weight: bold;">薪酬范围</td>
+							
+							<td class="text-left"></td>
+							<td class="text-center">
 								<div class="btn-group">
-									{% if not page==0 %}
-									<a class="btn-info btn-sm" href="?page = {{page-1}}">上一页</a>
-									{% end %}
-                                                                        {% for n in range(npage)%}
+                                                                         
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/admin/alter?_id="> <i class="glyphicon glyphicon-edit"></i>
+										<span class="sr-only">修改</span>
+									</a>
 									
-									<a {% if n==page %}class="btn-default btn-sm" {% end %}href="?page = {{n}}">{{n+1}}</a>
-									{% end %}
-                                                                        {% if page<npage-1%}
-
-									<a class="btn-default btn-sm" href="?page={{page+1}}">下一页</a>
-                                                                       {% end %}
+								<a class="btn btn-danger  btn-sm" title="删除" href="/admin/del? "> <i class="glyphicon glyphicon-trash"></i>
+										<span class="sr-only">删除</span>
+									</a>	
 								</div>
-									
-							</td>
+							</td> 
+                                                   
 						</tr>
+						<tr class="text-center">
+                                                        
+							<td class="text-center" style="font-size:18px; font-weight: bold;">工作经验</td>
+							<td class="text-left"></td>
+							<td class="text-center">
+								<div class="btn-group">
+                                                                         
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/admin/alter"> <i class="glyphicon glyphicon-edit"></i>
+										<span class="sr-only">修改</span>
+									</a>
+									
+									<a class="btn btn-danger  btn-sm" title="删除" href="/admin/del? "> <i class="glyphicon glyphicon-trash"></i>
+										<span class="sr-only">删除</span>
+									</a>
+								</div>
+							</td> 
+                                                   
+						</tr>
+						
+					
 					</tbody>
 				</table>
 			</div>

@@ -6,13 +6,14 @@ import category
 
 TName='position'
 
-def insert(name,ask,address,number,desc,date,**kwrags):
-    coll=get_context.get_mongo()[TName]
-    dct=dict(name=name,ask=ask,address=address,number=number,desc=desc,date=date)
+
+def insert(name,title,ask,address,number,desc,job,education,date,**kwrags):
+    coll=get_context().get_mongo()[TName]
+    dct=dict(name=name,title=title,ask=ask,address=address,number=number,desc=desc,job=job,education=education,date=date)
     return coll.insert(dct)
 
 def update(_id,**kwargs):
-    coll= get_context.get_mongo()[TName]
+    coll= get_context().get_mongo()[TName]
     cond= dict(_id=ObjectId(_id))
     return coll.update(cond,{'$set':kwargs})
 
