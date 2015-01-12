@@ -7,18 +7,35 @@ import tornado
 
 from tornado import gen
 from kpages import url, ContextHandler, LogicContext, get_context, service_async
-from logic import user,category,position,company #倒入logic里的user,new 
+from logic import user,category,position,company,genre,experience,wage,province #倒入logic里的user,new 
 from logic.__init__ import BaseHandler
 
 @url(r'/')
 class IndexHandler(ContextHandler,tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        size = 10
+        page = int(self.get_argument('page',0))
+        items = genre.page(page,size)
+        count = genre.count()
+        npage = count/size+1
+        genre_page = genre.page(0,size=100)
+        wage_page = wage.page(0,size=100)
+        province_page = province.page(0,size=100)
+        self.render('index.html',genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
+
 
 @url(r'/job')
 class JobScreen(BaseHandler):
     def get(self):
-        self.render('job.html')
+        size = 10
+        page = int(self.get_argument('page',0))
+        items = genre.page(page,size)
+        count = genre.count()
+        npage = count/size+1
+        genre_page = genre.page(0,size=100)
+        wage_page = wage.page(0,size=100)
+        province_page = province.page(0,size=100)
+        self.render('job.html',genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
 
 
 @url(r'/job/list')

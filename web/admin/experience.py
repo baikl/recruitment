@@ -16,23 +16,42 @@ from logic.__init__ import BaseHandler
 @url(r'/admin/experience')
 class AdminExperience(BaseHandler):
     def get(self):
-       # import pdb;pdb.set_trace()
-        #_id = self.get_argument('_id')
-        self.render('admin/experience.html')
+        size = 10
+        page = int(self.get_argument('page',0))
+        count = experience.count()
+        npage = count/size+1
+        items = experience.page(page,size)
+        self.render('admin/experience.html',page=page,npage=npage,experiences=items)
 
 @url(r'/admin/experience_edit')
 class AdminExperience_edit(BaseHandler):
     def get(self):
         self.render('admin/experience_edit.html')
     
+    def post(self):
+        starts = self.get_argument('start')
+        ends = self.get_argument('end')
+        experiences= experience.insert(starts,ends)
+        self.redirect('/admin/experience')
 
 @url(r'/admin/remove')
 class AdminRemove(BaseHandler):
     def get(self):
-        self.render('')
+        _id = self.get_argument('_id')
+        experi_rm = experience.remove(_id)
+        self.render('/admin/experience')
 
 @url(r'/admin/alter')
 class AdminAlter(BaseHandler):
     def get(self):
-        self.render('')
+        _id = self.get_argument('_id')
+        item = experience.find_one(_id)
+        self.render('admin/province_add.html',item=item)
+
+    def post(self):
+        _id = self.get_argument('_id')
+        start = self.get_argument('start')
+        end = self.get_argument('end')
+        experi_update = experience.update(_id,start=start,end = end)
+        self.redirect('/adimin/experience')
 

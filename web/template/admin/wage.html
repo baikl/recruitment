@@ -14,20 +14,20 @@
 						</tr>
 					</thead>
 					<tbody>
-                                          
+                                          {% for item in wages %}
 		
 						<tr class="text-center">
                                                         
 							
 							
-                                                        <td class="text-left"></td>
+                                                        <td class="text-left">{{item.get('start')}}~{{item.get('end')}}元</td>
 							<td class="text-center">
 								<div class="btn-group">
                                                                          
-								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/listname/alter"> <i class="glyphicon glyphicon-edit"></i>
+								<a class="btn btn-info btn-sm btn-info-edit" title="修改" href="/listname/alter?_id={{item['_id']}}"> <i class="glyphicon glyphicon-edit"></i>
 										<span class="sr-only">修改</span>
 									</a>
-									<a class="btn btn-danger  btn-sm" title="删除" href="/listname/del"> <i class="glyphicon glyphicon-trash"></i>
+									<a class="btn btn-danger  btn-sm" title="删除" href="/listname/del?_id={{item['_id']}}"> <i class="glyphicon glyphicon-trash"></i>
 										<span class="sr-only">删除</span>
 									</a>
 									
@@ -35,7 +35,24 @@
 							</td> 
                                                    
 						</tr>
-				
+					{% end %}
+					<tr class="active text-center">
+							<td colspan="3">
+								<div class="btn-group">
+									{% if not page==0 %}
+									<a class="btn-info btn-sm" href="?page = {{page-1}}">上一页</a>
+									{% end %}
+                                                                        {% for n in range(npage)%}
+									
+									<a {% if n==page %}class="btn-default btn-sm" {% end %}href="?page = {{n}}">{{n+1}}</a>
+									{% end %}
+                                                                        {% if page<npage-1%}
+
+									<a class="btn-default btn-sm" href="?page={{page+1}}">下一页</a>
+                                                                       {% end %}
+									
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

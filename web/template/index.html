@@ -59,10 +59,14 @@
 					<div class="row text-left ">
 					  <div class="col-md-2" ><b>职位类别：</b></div>
 						    <div class="controls" >
-							<select name='listname' id='slcate'>
 							
-							  <option value=''>请选择职位类别　</option>
+							<select name='listname' id='slcate'> 
+							<option value=''>请选择职位类别</option>
+							{% for  items in genres%}
 							 
+							  <option value=''>　{{ items['title']}}</option>
+							 
+							 {% end %}
 							</select>
 						    </div>
 					</div><br/>
@@ -72,7 +76,9 @@
 							<select name='province' id='slcate'>
 							
 							  <option value=''>-请选择省份／直辖市-</option>
-							 
+							{% for items in provinces %}
+							 <option value=''>{{items['title']}}</option>
+							{% end %}
 							</select>
 							
 						    </div>
@@ -83,7 +89,9 @@
 							<select name='wage' id='slcate'>
 							
 							  <option value=''>请选择职位月薪</option>
-							 
+							{% for items in wages %}
+							 <option value=''>{{items['start']}}~{{items['end']}}元 </option>
+							{% end %}
 							</select>
 						    </div>
 					</div><br/>

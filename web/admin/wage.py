@@ -16,23 +16,43 @@ from logic.__init__ import BaseHandler
 @url(r'/admin/wage')
 class ListName(BaseHandler):
     def get(self):
-       # import pdb;pdb.set_trace()
-        #_id = self.get_argument('_id')
-        self.render('admin/wage.html')
+        size = 10
+        page = int(self.get_argument('page',0))
+        count = wage.count()
+        npage = count/size+1
+        items = wage.page(page,size)
+        self.render('admin/wage.html',page=page,npage=npage,wages=items)
 
 @url(r'/admin/wage_edit')
 class AdminWage_edit(BaseHandler):
     def get(self):
         self.render('admin/wage_edit.html')
     
+    def post(self):
+        starts = self.get_argument('start')
+        ends = self.get_argument('end')
+        wages = wage.insert(starts,ends)
+        self.redirect('/admin/wage')
+
 
 @url(r'/admin/remove')
 class Remove(BaseHandler):
     def get(self):
-        self.render('')
+        _id = self.get_argument('_id')
+        wage_rm=wage.remove(_id)
+        self.render('/admin/wage')
 
 @url(r'/admin/alter')
 class Alther(BaseHandler):
     def get(self):
-        self.render('')
+        _id = self.get_argument('_id')
+        itme = wage.find_one(_id)
+        self.render('admin/wage_add.html',item=item)
+
+    def post(self):
+        _id = self.get_argument('_id')
+        start = self.get_argument('start')
+        end = self.get_argument('end')
+        wage_update = wage.update(_id,start=start,end=end)
+        self.redirect('admin/wage')
 

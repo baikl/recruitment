@@ -16,29 +16,42 @@ from logic.__init__ import BaseHandler
 @url(r'/admin/genre')
 class AdminGenre(BaseHandler):
     def get(self):
+        size = 10
+        page = int(self.get_argument('page',0))
+        items = genre.page(page,size)
+        count = genre.count()
+        npage = count/size+1
        # import pdb;pdb.set_trace()
-       # _id = self.get_argument('_id')
-       # genres = genre.find_one(_id)
-        self.render('admin/genre.html')
+        self.render('admin/genre.html',genres=items,page=page,npage=npage)
 
 @url(r'/admin/genre_edit')
 class AdminGenre_edit(BaseHandler):
     def get(self):
         self.render('admin/genre_edit.html')
     
-   # def post(self):
-       # title = self.get_argument('title')
-       # _id = genre.insert(title)
-        #self.redirect('/listname?_id'+str(_id))
-       # import pdb;pdb.set_trace()
+    def post(self):
+        title = self.get_argument('title')
+        genres = genre.insert(title)
+        self.redirect('/admin/genre')
 
-@url(r'/admin/remove')
+@url(r'/admin/del')
 class Province(BaseHandler):
     def get(self):
-        self.render('')
+        genre_id = self.get_argument('_id')
+        genres= genre.remove(genre_id)
+        self.redirect('/admin/genre')
 
 @url(r'/admin/alter')
 class Wage(BaseHandler):
     def get(self):
-        self.render('')
-
+        #import pdb;pdb.set_trace()
+        _id = self.get_argument('_id')
+        item = genre.find_one(_id)
+        self.render('admin/wage_add.html',item=item)
+        #import pdb;pdb.set_trace()
+    
+    def post(self):
+        _id = self.get_argument('_id')
+        title = self.get_arguemt('title')
+        genres = genre.update(_id,title=title)
+        self.redirect('/admin/genre')

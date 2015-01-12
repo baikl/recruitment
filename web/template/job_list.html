@@ -23,12 +23,13 @@
 						</tr>
 					</thead>
 					<tbody>
+					{% for items in campany%}
 						<tr class="text-center">
 							<td　class="text-left"></td>
-							<td class="text-left"></td>
-							<td class="text-left"></td>
-							<td class="text-left"></td>
-							<td class="text-left"></td>
+							<td class="text-left">{{items.get('number')}}</td>
+							<td class="text-left">{{items.get('')}}</td>
+							<td class="text-left">{{items.get('address')}}</td>
+							<td class="text-left">{{items.get('date')}}</td>
 							<td class="text-left"></td>
 
 							<td class="text-center">
@@ -42,7 +43,7 @@
 							</td>
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　<td class="text-left"></td>
 						</tr>
-					
+					{% end %}
 						<tr class="active text-center">
 							<td colspan="7">
 								<div class="btn-group">
