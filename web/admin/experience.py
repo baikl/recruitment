@@ -34,24 +34,24 @@ class AdminExperience_edit(BaseHandler):
         experiences= experience.insert(starts,ends)
         self.redirect('/admin/experience')
 
-@url(r'/admin/remove')
+@url(r'/admin/experience/remove')
 class AdminRemove(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         experi_rm = experience.remove(_id)
-        self.render('/admin/experience')
+        self.redirect('/admin/experience')
 
-@url(r'/admin/alter')
+@url(r'/admin/experience/alter')
 class AdminAlter(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         item = experience.find_one(_id)
-        self.render('admin/province_add.html',item=item)
+        self.render('admin/experience_add.html',item=item)
 
     def post(self):
         _id = self.get_argument('_id')
         start = self.get_argument('start')
         end = self.get_argument('end')
         experi_update = experience.update(_id,start=start,end = end)
-        self.redirect('/adimin/experience')
+        self.redirect('/admin/experience')
 

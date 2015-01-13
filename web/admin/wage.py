@@ -35,18 +35,18 @@ class AdminWage_edit(BaseHandler):
         self.redirect('/admin/wage')
 
 
-@url(r'/admin/remove')
+@url(r'/admin/wage/remove')
 class Remove(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         wage_rm=wage.remove(_id)
-        self.render('/admin/wage')
+        self.redirect('/admin/wage')
 
-@url(r'/admin/alter')
+@url(r'/admin/wage/alter')
 class Alther(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
-        itme = wage.find_one(_id)
+        item = wage.find_one(_id)
         self.render('admin/wage_add.html',item=item)
 
     def post(self):
@@ -54,5 +54,5 @@ class Alther(BaseHandler):
         start = self.get_argument('start')
         end = self.get_argument('end')
         wage_update = wage.update(_id,start=start,end=end)
-        self.redirect('admin/wage')
+        self.redirect('/admin/wage')
 

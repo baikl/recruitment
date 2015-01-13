@@ -100,29 +100,23 @@
            	</form>
 		<div　class='bs-example' >
 			<table class="table" style='width:30%;max-width:50%;margin-top:80px;margin-left:350px;'>
-			<caption>共查询到个职位</caption>
+			
 			<thead>
-			<tr>
-			    <td colspan="4">&nbsp;</td>
-			  </tr>
-			</thead>
-			<tbody>
-			<tr>
-			  <td colspan="4">&nbsp;</td>
-			</tr>
-			<tr>
-			  <td colspan="4">&nbsp;</td>
-			</tr>
+			{% for cate in position%}{% for item in company %}
 			  <tr>
-			    <td colspan="3">&nbsp;</td>
+			    <td colspan="3"><a href='/job/detail?_id={{cate.get('_id')}}'>{{cate['title']}}</a>-<a href='/job/firm}}'>{{cate['name']}}</a></td>
 			    <td>&nbsp;</td>
 			  </tr>
 			  <tr>
-			    <td>&nbsp;</td>
-			    <td>&nbsp;</td>
-			    <td>&nbsp;</td>
-			    <td>&nbsp;</td>
+			 
+			    <td style="color: grey; font-size: 9pt;">月薪:</td>
+			    <td style="color: grey; font-size: 9pt;">工作经验:</td>
+			    <td style="color: grey; font-size: 9pt;">{{cate['address']}}</td>
+			    <td style="color: grey; font-size: 9pt;">发布日期:{{cate['date']}}</td>
+			 
 			  </tr>
+			{% end %}
+			{% end %}
 			  </tbody>
 			</table>
 		</div>

@@ -9,10 +9,11 @@
 					    <div class="controls" >
 						<select name='categorys' id='slcate'>
 						  <option value=''>请选择职位类别　</option>
-	
-						  
-						  <option value=''></option>
-						  
+							{% for  item in genres%}
+							 
+							  <option value='{{ item['genre']}}'>　{{ item['genre']}}</option>
+							 
+							 {% end %}
 						</select>
 					    </div>
 					  </div>
@@ -33,9 +34,9 @@
 					    <div class="controls" >
 						<select name='province' id='slcate'>
 						<option value=''>北京</option>
-						 
-						  <option value=''></option>
-						 
+						{% for item in provinces %}
+						<option value='{{ item['province']}}'>{{item['province']}}</option>
+						{% end %}
 						</select>
 							
 						
@@ -68,9 +69,9 @@
 					    <div class="controls" >
 						<select name='experience' id='slcate'>
 						  <option value=''>无工作经验要求　</option>
-						 
-						  <option value=''></option>
-						 
+						 {% for item in experience %}
+						  <option value='{{item['_id']}}'>{{item['start']}}~{{item['end']}}年</option>
+						{% end %}
 						</select>
 					    </div>
 					  </div>
@@ -85,7 +86,9 @@
 						<select name='wage' id='slcate'>
 						　<option value=''>请选择职位月薪　</option>
 						 
-						  <option value=''></option>
+						{% for item in wages %}
+						<option value='{{item['_id']}}'>{{item['start']}}~{{item['end']}}元 </option>
+						{% end %}
 						
 						</select>
 					    </div>
@@ -110,5 +113,14 @@
 			 </div>
 		</div>
            </form>
-		<!-- /container -->		
+		<!-- /container -->
+<script type="text/javascript">
+$(function(){
+	var _id = '{{ item.get("_id")}}';
+	$('#slcate').val(_id);
+	var title = '{{ item.get("title")}}';
+	$('#slcate').val(title);
+
+})
+</script>			
 {% end %}

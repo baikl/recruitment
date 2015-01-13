@@ -29,12 +29,12 @@ class Province_edit(BaseHandler):
         self.render('admin/province_edit.html')
 
     def post(self):
-        title = self.get_argument('title')
+        title = self.get_argument('province')
         provinces = province.insert(title)
         self.redirect('/admin/province')
     
 
-@url(r'/admin/alter')
+@url(r'/admin/province/alter')
 class ProvinceAlter(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
@@ -43,15 +43,15 @@ class ProvinceAlter(BaseHandler):
 
     def post(self):
         _id = self.get_argument('_id')
-        title = self.get_argument('title')
+        title = self.get_argument('province')
         province_update = province.update(_id,title=title)
-        self.redirect('admin/province')
+        self.redirect('/admin/province')
 
 
-@url(r'/admin/remove')
+@url(r'/admin/province/del')
 class ProvinceRemove(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         prov_rm = province.remove(_id)
-        self.render('/admin/province')
+        self.redirect('/admin/province')
 

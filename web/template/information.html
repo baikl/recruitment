@@ -19,7 +19,7 @@
 						    <div class=" form-control-static" style='margin-left:13px;'><b> 公司：</b></div>
 						  </div>
 						  <div class="form-group" style="font-size:13px;">
-						   <a>{{ item.get('name') }}</a>
+						   <a href='/job/firm?_id={{item['_id']}}'>{{ item['name'] }}</a>
 						   
 						  </div>
 				
@@ -32,7 +32,7 @@
 					<div class="row text-left " style="font-size:13px;">
 					  <div class="col-md-2" style='margin-left:13px;' ><b>职位类别：</b></div>
 						    <div class="controls" style="font-size:13px;" >
-							
+							{{ item.get('genre')}}
 						    </div>
 					</div>
 					<div class="row text-left " style="font-size:13px;">
@@ -50,7 +50,7 @@
 					<div class="row text-left " style="font-size:13px;">
 					  <div class="col-md-2" style='margin-left:13px;'><b>工作经验：</b></div>
 						    <div class="controls" style="font-size:13px;" >
-							
+							{{item.get('start')}}~{{item.get('end')}}年
 						    </div>
 					</div>
 					<div class="row text-left " style="font-size:13px;">
@@ -84,17 +84,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="text-center">
+				
+						<tr >
 							<td　class="text-left"></td>
 							<td class="text-left"></td>
 							<td class="text-left"></td>
 							<td class="text-left"></td>
 							<td class="text-left"></td>
-							<td class="text-left"></td>
+							
 							
 						</tr>
 					
-						
+					
 					</tbody>
 				</table>
 			</div>

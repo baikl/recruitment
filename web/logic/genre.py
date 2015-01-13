@@ -5,9 +5,9 @@ from kpages import get_context,mongo_conv
 
 TName = 'genre'
 
-def insert (title,**kwargs):
+def insert (genre,**kwargs):
     coll = get_context().get_mongo()[TName]
-    dct = dict(title=title)
+    dct = dict(genre=genre)
     return coll.insert(dct)
 
 def page(page,size=10,**kwargs):

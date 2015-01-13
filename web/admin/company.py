@@ -36,7 +36,7 @@ class Jobaddcom(BaseHandler):
         phone = self.get_argument('phone')
         email = self.get_argument('email')
         _id= company.insert(name,intr,proper,indu,scale,area,address,website,contant,phone,email)
-        self.redirect('/job/firm?_id='+str(_id))
+        self.redirect('/job/edit')
 
 @url(r'/job/positions')
 class Jobaddcm(BaseHandler):

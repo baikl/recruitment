@@ -21,7 +21,9 @@ class IndexHandler(ContextHandler,tornado.web.RequestHandler):
         genre_page = genre.page(0,size=100)
         wage_page = wage.page(0,size=100)
         province_page = province.page(0,size=100)
-        self.render('index.html',genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
+        company_page = company.page(0,size=100)
+        position_page = position.page(0,size=100)
+        self.render('index.html',company=company_page,position=position_page,genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
 
 
 @url(r'/job')
@@ -35,7 +37,9 @@ class JobScreen(BaseHandler):
         genre_page = genre.page(0,size=100)
         wage_page = wage.page(0,size=100)
         province_page = province.page(0,size=100)
-        self.render('job.html',genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
+        company_page = company.page(0,size=100)
+        position_page = position.page(0,size=100)
+        self.render('job.html',company=company_page,position=position_page,genres=genre_page,wages=wage_page,provinces=province_page,genre=items,page=page,npage=npage)
 
 
 @url(r'/job/list')
@@ -46,13 +50,23 @@ class NewsList(BaseHandler):
         count = category.count()
         npage = count/size+1
         items = position.page(0,size=100)
-        self.render('job_list.html',campany=items,page=page,npage=npage)
+        company_item = company.page(0,size=100)
+        self.render('job_list.html',position=items,company=company_item,page=page,npage=npage)
     
 
 @url(r'/job/edit')
 class JobEdit(BaseHandler):
     def get(self):
-        self.render('admin/job_add.html')
+        size = 10
+        page = int(self.get_argument('page',0))
+        item = genre.page(page,size)
+        count = genre.count()
+        npage = count/size+1
+        genre_page = genre.page(0,size=100)
+        wage_page = wage.page(0,size=100)
+        province_page = province.page(0,size=100)
+        ex_page = experience.page(0,size=100)
+        self.render('admin/job_add.html',genres=genre_page,wages=wage_page,experience=ex_page,provinces=province_page,genre=item,page=page,npage=npage)
 
     def post(self):
         name=self.get_argument('name')
@@ -65,7 +79,7 @@ class JobEdit(BaseHandler):
         education=self.get_argument('education')
         date=self.get_argument('date')
         _id=position.insert(name,title,ask,address,number,desc,job,education,date)
-        self.redirect('/job/detail?_id='+str(_id))
+        self.redirect('/job')
 
 
 
@@ -74,12 +88,6 @@ class JobDetail(BaseHandler):
     def get(self):
         _id = self.get_argument('_id')
         positions = position.find_one(_id)
+       # import pdb;pdb.set_trace()
         self.render('information.html',item=positions)#
 
-@url(r'/job/alter')
-class Newsalter(BaseHandler):
-    def get(self):
-        self.render('admin/job_edit.html')#
-
-    def post(self):
-        self.redirect('/job/list')

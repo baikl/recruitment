@@ -30,28 +30,28 @@ class AdminGenre_edit(BaseHandler):
         self.render('admin/genre_edit.html')
     
     def post(self):
-        title = self.get_argument('title')
+        title = self.get_argument('genre')
         genres = genre.insert(title)
         self.redirect('/admin/genre')
 
-@url(r'/admin/del')
+@url(r'/admin/genre/del')
 class Province(BaseHandler):
     def get(self):
         genre_id = self.get_argument('_id')
         genres= genre.remove(genre_id)
         self.redirect('/admin/genre')
 
-@url(r'/admin/alter')
+@url(r'/admin/genre/alter')
 class Wage(BaseHandler):
     def get(self):
         #import pdb;pdb.set_trace()
         _id = self.get_argument('_id')
         item = genre.find_one(_id)
-        self.render('admin/wage_add.html',item=item)
+        self.render('admin/genre_add.html',item=item)
         #import pdb;pdb.set_trace()
     
     def post(self):
         _id = self.get_argument('_id')
-        title = self.get_arguemt('title')
+        title = self.get_argument('genre')
         genres = genre.update(_id,title=title)
         self.redirect('/admin/genre')
