@@ -21,7 +21,6 @@ class AdminGenre(BaseHandler):
         items = genre.page(page,size)
         count = genre.count()
         npage = count/size+1
-       # import pdb;pdb.set_trace()
         self.render('admin/genre.html',genres=items,page=page,npage=npage)
 
 @url(r'/admin/genre_edit')
@@ -44,11 +43,9 @@ class Province(BaseHandler):
 @url(r'/admin/genre/alter')
 class Wage(BaseHandler):
     def get(self):
-        #import pdb;pdb.set_trace()
         _id = self.get_argument('_id')
         item = genre.find_one(_id)
         self.render('admin/genre_add.html',item=item)
-        #import pdb;pdb.set_trace()
     
     def post(self):
         _id = self.get_argument('_id')
